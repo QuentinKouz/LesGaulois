@@ -36,9 +36,11 @@ public class Gaulois {
 	}
 
 	public static void main(String[] args) {
-		Gaulois Asterix = new Gaulois("Asterix", 9);
-		Asterix.parler("Salut");
-		
+		Gaulois asterix = new Gaulois("Asterix", 8);
+		Romain minus = new Romain("minus", 8);
+		asterix.prendreParole();
+		asterix.parler("Salut !");
+		asterix.frapper(minus);
 	}
 	
 
