@@ -1,10 +1,12 @@
 package personnages;
+import personnages.Equipement;
 
 public class Romain {
 	private String nom;
 	private int force;
 	
 	public Romain(String nom, int force) {
+		assert (force >= 0): "La force est négative";
 		this.nom = nom;
 		this.force = force;
 	}
@@ -31,9 +33,10 @@ public class Romain {
 	}
 	
 		public static void main(String[] args) {
-			Romain romain = new Romain("Romain", 7);
-			romain.prendreParole();
-			romain.parler("Salut !");
-			romain.recevoirCoup(10);	}
+			System.out.println("test");
+			Romain romain = new Romain("Romain", 6);
+			System.out.println(Equipement.BOUCLIER);
+			System.out.println(Equipement.CASQUE);
+		}
 
 }
