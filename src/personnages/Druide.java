@@ -1,6 +1,7 @@
 package personnages;
 import java.util.Random;
 import personnages.Gaulois;
+
 public class Druide {
 	private String nom;
 	private int effetPotionMin;
@@ -41,8 +42,11 @@ public class Druide {
 	}
 	
 	public void booster(Gaulois gaulois) {
-		if (gaulois.nom == "Obélix") {		
-			th
+		if (gaulois.getNom() == "Obélix") {		
+			this.parler("Non, Obélix !... Tu n'auras pas de potion magique !");
+		}
+		else {
+			gaulois.boirePotion(this.forcePotion);
 		}
 	}
 	
