@@ -4,9 +4,11 @@ import personnages.Equipement;
 public class Romain {
 	private String nom;
 	private int force;
+	Equipement[] equipements = new Equipement[2];
+	private int nbEquipement = 0;
 	
 	public Romain(String nom, int force) {
-		assert (force >= 0): "La force est nÈgative";
+		assert (force >= 0): "La force est nÔøΩgative";
 		this.nom = nom;
 		this.force = force;
 	}
@@ -16,7 +18,7 @@ public class Romain {
 	}
 	
 	public void parler(String texte) {
-		System.out.println(prendreParole() + "´ " + texte + "ª");
+		System.out.println(prendreParole() + "ÔøΩ " + texte + "ÔøΩ");
 	}
 	
 	private String prendreParole() {
@@ -26,12 +28,23 @@ public class Romain {
 	public void recevoirCoup(int forceCoup) {
 		force -= forceCoup;
 		if (force > 0) {
-			parler("AÔe");
+			parler("AÔøΩe");
 		} else {
 			parler("J'abandonne...");
-	}
+		}
 	}
 	
+	public void sEquiper(Equipement equipement) {
+		switch(this.nbEquipement) {
+		case 2:
+			System.out.println("Le soldat" + this.nom + "est d√©j√† bien prot√©g√© !");
+		case 1:
+			switch(equipement) {
+			case this.equipements[0]:
+				System.out.println("Le soldat" + this.nom + "poss√®de d√©j√† un " + equipement);
+			}
+		}
+	}
 		public static void main(String[] args) {
 			System.out.println("test");
 			Romain romain = new Romain("Romain", 6);
