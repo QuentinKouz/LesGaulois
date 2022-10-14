@@ -39,17 +39,34 @@ public class Romain {
 		case 2:
 			System.out.println("Le soldat" + this.nom + "est déjà bien protégé !");
 		case 1:
-			switch(equipement) {
-			case this.equipements[0]:
-				System.out.println("Le soldat" + this.nom + "possède déjà un " + equipement);
+			if (this.equipements[0] == equipement.nom){
+				System.out.println("Le soldat" + this.nom + "possède déjà un " + equipement.nom + " !");
 			}
+			else {
+				this.nbEquipement = 2;
+				equipements[this.nbEquipement] = equipement;
+				System.out.println("Le soldat " + this.nom + "s'équipe avec un " + equipement.nom + ".");
+			}
+		case 0:
+			this.nbEquipement = 2;
+			equipements[this.nbEquipement] = equipement;
+			System.out.println("Le soldat " + this.nom + "s'équipe avec un " + equipement.nom + ".");
+		
+		default:
+			System.out.println("Le soldat " + this.nom + " ne peux pas s'équiper de cet équipement");
 		}
 	}
+	
 		public static void main(String[] args) {
-			System.out.println("test");
-			Romain romain = new Romain("Romain", 6);
-			System.out.println(Equipement.BOUCLIER);
-			System.out.println(Equipement.CASQUE);
+			Romain minus = new Romain("Minus",5);
+			Equipement casque = Equipement.CASQUE;
+			Equipement bouclier = Equipement.BOUCLIER;
+			minus.sEquiper(casque);
+			minus.sEquiper(casque);
+			minus.sEquiper(bouclier);
+			minus.sEquiper(bouclier);
+			
+			
 		}
 
 }

@@ -4,7 +4,7 @@ public enum Equipement {
 	CASQUE("casque"),BOUCLIER("bouclier");
 	private String nom;
 	
-	private Equipement(String nomEquipment) {
+	public Equipement(String nomEquipment) {
 		this.nom = nomEquipment;
 	}
 	
