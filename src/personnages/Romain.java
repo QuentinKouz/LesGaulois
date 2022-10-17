@@ -6,7 +6,7 @@ public class Romain {
 	private int force;
 	Equipement[] equipements = new Equipement[2];
 	private int nbEquipement = 0;
-	private String texte;
+
 	
 	public Romain(String nom, int force) {
 		assert (force >= 0): "La force est nï¿½gative";
@@ -39,17 +39,17 @@ public class Romain {
 	public void sEquiper(Equipement equipement) {
 		switch (nbEquipement) {
 			case 2: 
-				System.out.println("Le soldat " + this.getNom() + " est déjà bien protégé !");
+				System.out.println("Le soldat " + this.getNom() + " est dï¿½jï¿½ bien protï¿½gï¿½ !");
 				break;
 			case 1:
 				if (equipements[0] == equipement) {
-					System.out.println("Le soldat " + this.getNom() + " possède déjà un " + equipement.nom);
+					System.out.println("Le soldat " + this.getNom() + " possï¿½de dï¿½jï¿½ un " + equipement.nom);
 					break;
 				}
 			default:
 				equipements[nbEquipement] = equipement;
 				nbEquipement += 1;
-				System.out.println("Le soldat " + this.getNom() + " s'équipe avec un " + equipement.nom + ".");
+				System.out.println("Le soldat " + this.getNom() + " s'ï¿½quipe avec un " + equipement.nom + ".");
 				break;
 				
 		}
@@ -60,45 +60,39 @@ public class Romain {
 	
 	public Equipement[] recevoirCoup(int forceCoup) {
 		Equipement[] equipementEjecte = null;
-		// précondition
+		// prï¿½condition
 		assert force > 0;
 		int oldForce = force;
-		forceCoup = CalculResistanceEquipement(forceCoup);
+		forceCoup = calculResistanceEquipement(forceCoup);
 		force -= forceCoup;
 		// if (force > 0) {
-		// parler("Aïe");
+		// parler("Aï¿½e");
 		// } else {
 		// equipementEjecte = ejecterEquipement();
 		// parler("J'abandonne...");
 		// }
-		switch (force) {
-		case 0:
-			parler("Aïe");
-		default:
+		if (force == 0) {
+			parler("Aï¿½e");
+		} else {
 			equipementEjecte = ejecterEquipement();
 			parler("J'abandonne...");
-			break;
 		}
-		// post condition la force à diminuer
-		assert force < oldForce;
-		return equipementEjecte;
 	}
 	
-	private int CalculResistanceEquipement(int forceCoup) {
-		texte = "Ma force est de " + this.force + ", et la force du coup est de " + forceCoup;
+	private int calculResistanceEquipement(int forceCoup) {
+		String texte = "Ma force est de " + this.force + ", et la force du coup est de " + forceCoup;
 		int resistanceEquipement = 0;
-		if (!(nbEquipement == 0)) {
-			texte += "\nMais heureusement, grace à mon équipement sa force est diminué de ";
+		if (nbEquipement != 0) {
+			texte += "\nMais heureusement, grace Ã  mon Ã©quipement sa force est diminuÃ© de ";
 			for (int i = 0; i < nbEquipement;) {
-				if ((equipements[i] != null && equipements[i].equals(Equipement.BOUCLIER)) == true) {
+				if ((equipements[i] != null && equipements[i].equals(Equipement.BOUCLIER))) {
 					resistanceEquipement += 8;
 				} else {
 					System.out.println("Equipement casque");
 					resistanceEquipement += 5;
 				}
-				i++;
 			}
-			texte = +resistanceEquipement + "!";
+			texte += resistanceEquipement + "!";
 		}
 		parler(texte);
 		forceCoup -= resistanceEquipement;
@@ -107,13 +101,10 @@ public class Romain {
 	
 	private Equipement[] ejecterEquipement() {
 		Equipement[] equipementEjecte = new Equipement[nbEquipement];
-		System.out.println("L'équipement de " + nom.toString() + "s'envole sous la force du coup.");
-		// TODO
+		System.out.println("L'Ã©quipement de " + nom.toString() + " s'envole sous la force du coup.");
 		int nbEquipementEjecte = 0;
 		for (int i = 0; i < nbEquipement; i++) {
 			if (equipements[i] == null) {
-				continue;
-			} else {
 				equipementEjecte[nbEquipementEjecte] = equipements[i];
 				nbEquipementEjecte++;
 				equipements[i] = null;
@@ -122,13 +113,16 @@ public class Romain {
 		return equipementEjecte;
 	}
 
-	public static void main(String[] args) {
-		Romain minus = new Romain("Minus", 5);
-		minus.sEquiper(Equipement.CASQUE);
-		minus.sEquiper(Equipement.CASQUE);
-		minus.sEquiper(Equipement.BOUCLIER);
-		minus.sEquiper(Equipement.BOUCLIER);
 
-	}
-
+	
+		public static void main(String[] args) {
+			Romain minus = new Romain("Minus",5);
+			Equipement casque = Equipement.CASQUE;
+			Equipement bouclier = Equipement.BOUCLIER;
+			minus.sEquiper(casque);
+			minus.sEquiper(casque);
+			minus.sEquiper(bouclier);
+			minus.sEquiper(bouclier);
+			
+		}
 }

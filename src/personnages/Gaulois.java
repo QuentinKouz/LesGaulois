@@ -2,9 +2,10 @@ package personnages;
 
 public class Gaulois {
 	private String nom;
-	private int force, nb_trophees;
+	private int force;
+	private int nbTrophees;
 	private int effetPotion = 1;
-	private Equipement trophees[] = new Equipement[100];
+	private Equipement[] trophees = new Equipement[100];
 
 
 	
@@ -18,7 +19,7 @@ public class Gaulois {
 	}
 
 	public void parler(String texte) {
-		System.out.println(prendreParole() + "« " + texte + "»");
+		System.out.println(prendreParole() + "ï¿½ " + texte + "ï¿½");
 	}
 	
 	
@@ -27,38 +28,32 @@ public class Gaulois {
 //	}
 
 //	public void frapper(Romain romain) {
-//		System.out.println(nom + " envoie un grand coup dans le mâchoire de " + romain.getNom());
+//		System.out.println(nom + " envoie un grand coup dans le mï¿½choire de " + romain.getNom());
 //		romain.recevoirCoup(force / 3);
-	}
+//	}
 	
 	public void boirePotion(int forcePotion) {
 		this.effetPotion =  forcePotion;
-		this.parler("Merci Druide, je sens que ma force est "+ forcePotion + " fois décuplée");
+		this.parler("Merci Druide, je sens que ma force est "+ forcePotion + " fois dï¿½cuplï¿½e");
 	}
 	
 	
 	
 	private String prendreParole() {
-		String texte = "Le gaulois " + nom + " : ";
-		return texte;
+		return "Le gaulois " + nom + " : ";
 		}
 
 	
 	public void frapper(Romain romain) {
-		System.out.println(nom + " envoie un grand coup dans la mâchoire de " + romain.getNom());
-		Equipement trophees[] = romain.recevoirCoup((force / 3) * effetPotion);
-		for (int i = 0; trophees != null && i < trophees.length; i++, nb_trophees++) {
-			this.trophees[nb_trophees] = trophees[i];
+		System.out.println(nom + " envoie un grand coup dans la mï¿½choire de " + romain.getNom());
+		Equipement[] newTrophees = romain.recevoirCoup((force / 3) * effetPotion);
+		for (int i = 0; newTrophees != null && i < newTrophees.length; i++, nb_trophees++) {
+			this.trophees[nbTrophees] = newTrophees[i];
 		}
-		return;
 	}
 
 	
 	
-	@Override
-	public String toString() {
-		return "Gaulois [nom=" + nom + ", force=" + force + ", effetPotion=" + effetPotion + "]";
-	}
 
 	public static void main(String[] args) {
 		Gaulois asterix = new Gaulois("Asterix", 8);
